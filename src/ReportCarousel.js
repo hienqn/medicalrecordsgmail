@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import FileReaderAPI from './backend/nameFileToTextMap.json'
 import {useLocation, useHistory} from 'react-router-dom';
-import {Col, Row, Button, Container } from 'react-bootstrap';
+import {Col, Row, Button } from 'react-bootstrap';
 import Highlight from './Highlight';
 
 export default function ReportCarousel({reports, tags, setTags, searchText}) {
   const id = useLocation().pathname.split('/').pop();
+  console.log(id);
   const [index, setIndex] = useState(reports.indexOf(id));
   const [reportName, setReportName] = useState(reports[index]);
   const history = useHistory();
@@ -38,13 +39,6 @@ export default function ReportCarousel({reports, tags, setTags, searchText}) {
     setTags(Object.assign(tags, newTag));
   };
 
-  // Line 42-47 to handle pressing key 2
-  function checkKeyPress(key){
-    if (key.keyCode === 50){
-      handleTag(key, "#goodreport");
-    }
-  }
-  window.addEventListener("keydown", checkKeyPress, false);
 
   const handleBack = (e) => {
     history.push('/');
@@ -52,11 +46,19 @@ export default function ReportCarousel({reports, tags, setTags, searchText}) {
 
   useEffect(
     () => {
+      function checkKeyPress(key){
+        if (key.keyCode === 50){
+          handleTag(key, "#goodreport");
+        }
+      }
+      window.addEventListener("keydown", checkKeyPress, false);
       setReportName(reports[index]);
+
+      return () => window.removeEventListener("keydown", checkKeyPress, false);
     }, [index, reports]
   )
 
-  const reportButton = reports.map(report => <Button key={report} variant="primary" className="m-2" onClick={e => handleSelect(e, report)}> {report} </Button>)
+  // const reportButton = reports.map(report => <Button key={report} variant="primary" className="m-2" onClick={e => handleSelect(e, report)}> {report} </Button>)
 
   return (
     <div className="container mt-3">
