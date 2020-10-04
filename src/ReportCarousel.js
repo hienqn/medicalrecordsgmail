@@ -6,7 +6,6 @@ import Highlight from './Highlight';
 
 export default function ReportCarousel({reports, tags, setTags, searchText}) {
   const id = useLocation().pathname.split('/').pop();
-  console.log(id);
   const [index, setIndex] = useState(reports.indexOf(id));
   const [reportName, setReportName] = useState(reports[index]);
   const history = useHistory();
