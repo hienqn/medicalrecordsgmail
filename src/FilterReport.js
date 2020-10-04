@@ -12,7 +12,6 @@ function FilterReport(){
   const [tagsForReport, setTagsForReport] = useState({});
   const history = useHistory();
 
-  // Search report 
   const searchReport = (e, searchText) => {
     e.preventDefault();  
     const keywords = searchText.trim().split(/[\s]+/).map(kw => kw.toLowerCase().trim());
@@ -41,7 +40,6 @@ function FilterReport(){
         <Route exact path='/'>
           <Reports searchText={searchText} reports={reports} tags={tagsForReport} setTags={setTagsForReport}></Reports>
         </Route>
-
         <Route path='/reports/:id'>
           <ReportCarousel searchText={searchText} reports={reports} tags={tagsForReport} setTags={setTagsForReport}> </ReportCarousel>
         </Route>

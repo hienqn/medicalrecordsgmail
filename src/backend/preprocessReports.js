@@ -32,7 +32,6 @@ function getFile(filename) {
     return fs.readFileAsync(filename, 'utf8');
 }
 
-
 // start a blank wordToFilenameMap.json file
 fs.writeFile('./wordToFilenameMap.json', '', function(){console.log('done')});
 fs.writeFile('./nameFileToTextMap.json', '', function(){console.log('done')});

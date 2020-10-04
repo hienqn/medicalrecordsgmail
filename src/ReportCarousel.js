@@ -19,10 +19,8 @@ export default function ReportCarousel({reports, tags, setTags, searchText}) {
     }
   };
 
-
   const handleTag = (e, tagName) => {
     let tagArray;
-    console.log(tagName);
     if (tagName === '#goodreport'){
       tagArray = tags[reportName] ? [...new Set([...tags[reportName], '#goodreport'])] : ['#goodreport'];
     } else {
@@ -40,15 +38,13 @@ export default function ReportCarousel({reports, tags, setTags, searchText}) {
     setTags(Object.assign(tags, newTag));
   };
 
-
+  // Line 42-47 to handle pressing key 2
   function checkKeyPress(key){
     if (key.keyCode === 50){
       handleTag(key, "#goodreport");
     }
   }
-      
   window.addEventListener("keydown", checkKeyPress, false);
-
 
   const handleBack = (e) => {
     history.push('/');
@@ -71,11 +67,12 @@ export default function ReportCarousel({reports, tags, setTags, searchText}) {
           <Button variant="primary" className="ml-2" onClick={handleBack}> Back to Search </Button>{' '}
       </Row>
 
-      <Container>
+      {/* <Container>
           {reportButton}
-      </Container>
+      </Container> */}
 
       <Row >
+
         <Col className="border border-primary mt-3" >
           <h1 className="text-center"> {reportName}</h1>
           <Highlight text={FileReaderAPI[`${reportName}.txt`]} highlight={searchText}></Highlight>
@@ -91,6 +88,7 @@ export default function ReportCarousel({reports, tags, setTags, searchText}) {
             <Button variant="warning" onClick={handleTag}>#conditionpresent</Button>
           </Row>
         </Col>
+
       </Row>
     </div>
   );
