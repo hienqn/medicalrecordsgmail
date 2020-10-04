@@ -1,17 +1,16 @@
-import React, {useState} from 'react';
-import { Col, Container, Row, Alert, Button } from 'react-bootstrap';
-import './App.css';
+import React from 'react';
+import {  Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FilterReport from './FilterReport';
-import { BrowserRouter as Router, Route} from "react-router-dom";
-import Report from './Report';
-import Switch from 'react-bootstrap/esm/Switch';
+import { BrowserRouter as Router} from "react-router-dom";
 
 function App() {
   return (
-    <Router>
-      <FilterReport />
-    </Router>
+    <Container>
+      <Router>
+        <FilterReport />
+      </Router>
+    </Container>
   );
 }
 
