@@ -4,7 +4,7 @@ import Reports from './Reports';
 import {Route, Switch, useHistory } from "react-router-dom";
 import ALLREPORTS from './backend/wordToFilenameMap.json';
 import ReportCarousel from './ReportCarousel';
-import INITIALTAGS from './backend/initialTags.json';
+import NAMEFILETOTEXT from './backend/nameFileToTextMap.json'
 
 function FilterReport(){
   const [searchText, setSearchText] = useState('');
@@ -33,7 +33,7 @@ function FilterReport(){
           <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={e => setSearchText(e.target.value)}/>
           <Button variant="outline-light" onClick={e => searchReport(e, searchText)}>Search</Button>
         </Form>
-        <Button variant="outline-light ml-5" onClick={() => {setReports(Object.keys(INITIALTAGS).map(e => e.split('.')[0])); history.push('/')}}>Click to Show All Reports</Button>
+        <Button variant="outline-light ml-5" onClick={() => {setReports(Object.keys(NAMEFILETOTEXT).map(e => e.split('.')[0])); history.push('/')}}>Click to Show All Reports</Button>
       </Navbar>
 
       <Switch>

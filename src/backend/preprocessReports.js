@@ -35,7 +35,6 @@ function getFile(filename) {
 // start a blank wordToFilenameMap.json file
 fs.writeFile('./wordToFilenameMap.json', '', function(){console.log('done')});
 fs.writeFile('./nameFileToTextMap.json', '', function(){console.log('done')});
-fs.writeFile('./initialTags.json', '', function(){console.log('done')});
 
 // read all text files in the directory, filter out those needed to process, and using Promise.all to time when all async readFiles has completed. 
 fs.readdirAsync(__dirname + '/medicalreports').then(function (filenames){
@@ -69,14 +68,6 @@ fs.readdirAsync(__dirname + '/medicalreports').then(function (filenames){
           return console.log(err);
         }
     });
-
-    
-    fs.appendFile("./initialTags.json", JSON.stringify(initialTags, null, 4), function(err) {
-        if(err) {
-          return console.log(err);
-        }
-    });
-
 
     fs.appendFile("./nameFileToTextMap.json", JSON.stringify(mapNameToText, null, 4), function(err) {
       if(err) {
